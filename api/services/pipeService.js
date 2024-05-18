@@ -1,7 +1,7 @@
 import { PipeRepository } from '../repositories/pipeRepository';
 import { pipeMapper } from '../mappers/pipeMapper.js'
 
-class UserService {
+class PipeService {
   async getPipeById(id) {
     const pipeEntity = await PipeRepository.getPipeById(id);
     if (!pipeEntity) {
@@ -9,8 +9,6 @@ class UserService {
     }
     return pipeMapper.entityToDto(pipeEntity);
   }
-
-  // Other service methods
 }
 
-module.exports = new UserService();
+export const pipeService = new PipeService()
