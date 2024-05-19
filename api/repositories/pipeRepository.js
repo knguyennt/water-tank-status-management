@@ -10,6 +10,4 @@ class PipeRepository {
   }
 }
 
-export {
-  PipeRepository
-}
+export const pipeRepository = new PipeRepository()
