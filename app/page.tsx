@@ -255,13 +255,27 @@ const sampleData = [
   // Add more sample data as needed
 ];
 
-
 export default function Page() {
   // Pagination state
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerInfoOpen, setDrawerInfoOpen] = useState(false);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [dataTable, setDataTable] = useState([
+    {
+      date: "",
+      type: "",
+      district: "",
+      size: "",
+      amount: 0,
+      reason: "",
+      material: "",
+      manufacturer: "",
+      thickness: "",
+      installed_date: "",
+    },
+  ]);
+  const [filteredData, setFilteredData] = useState([
     {
       date: "",
       type: "",
@@ -287,6 +301,17 @@ export default function Page() {
     thickness: "",
     installed_date: "",
   });
+  const [selectedRow, setSelectedRow] = useState(null);
+
+  const handleRowClick = (row) => {
+    setSelectedRow(row);
+    setDrawerInfoOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+    setDrawerInfoOpen(null);
+  };
 
   const updateFormValues = (property, value) => {
     setFormValues((prevProfile) => ({
@@ -323,12 +348,15 @@ export default function Page() {
   };
 
   const handleSearch = (searchValue) => {
-    console.log(searchValue);
-    // Convert search string to lowercase for case-insensitive search
     const lowerCaseSearchString = searchValue.toLowerCase();
 
+    if (!searchValue && dataTable.length > 0) {
+      setFilteredData(dataTable);
+      return;
+    }
+
     // Filter the list of dictionaries
-    const a = dataTable.filter((dict) => {
+    const filtered = dataTable.filter((dict) => {
       // Check if any value in the dictionary contains the search string
       return Object.values(dict).some(
         (value) =>
@@ -338,13 +366,18 @@ export default function Page() {
       );
     });
 
-    console.log(a)
-  }
+    setFilteredData(filtered);
+  };
+
+  const getTableData = () => {
+    console.log("AAAA");
+  };
 
   useEffect(() => {
     console.log("Effect hook.");
-    setDataTable(sampleData)
-  }, []); 
+    setDataTable(sampleData);
+    setFilteredData(sampleData);
+  }, []);
 
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
@@ -529,7 +562,7 @@ export default function Page() {
                 color="primary"
                 onClick={handleSubmit}
               >
-                Submit
+                Add
               </Button>
             </Grid>
           </Grid>
@@ -553,8 +586,7 @@ export default function Page() {
                 label="Search"
                 type="search"
                 variant="outlined"
-                // value={searchQuery}
-                // onChange={handleSearchChange}
+                onChange={(e) => handleSearch(e.target.value)}
                 style={{ minWidth: "250px" }}
                 InputProps={{
                   endAdornment: (
@@ -583,12 +615,16 @@ export default function Page() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {dataTable
+                {filteredData
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row, index) => (
-                    <TableRow key={index}>
-                      {Object.values(row).map((value, i) => (
-                        <TableCell key={i} style={cellStyle}>
+                  .map((row, rowIndex) => (
+                    <TableRow
+                      key={rowIndex}
+                      onClick={() => handleRowClick(row)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {Object.values(row).map((value, cellIndex) => (
+                        <TableCell key={cellIndex} style={cellStyle}>
                           <Tooltip title={value} arrow>
                             <span>{value}</span>
                           </Tooltip>
@@ -602,12 +638,49 @@ export default function Page() {
           <TablePagination
             rowsPerPageOptions={[5, 10, 25]}
             component="div"
-            count={dataTable.length}
+            count={filteredData.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
           />
+          <Drawer
+            anchor="right"
+            open={drawerInfoOpen}
+            onClose={handleDrawerClose}
+          >
+            <Box p={3} width={300}>
+              <Typography variant="h6">Edit Row</Typography>
+              {selectedRow &&
+                Object.entries(selectedRow).map(([key, value], index) => (
+                  <TextField
+                    key={index}
+                    label={key}
+                    defaultValue={value}
+                    fullWidth
+                    margin="normal"
+                    variant="outlined"
+                  />
+                ))}
+              <Box mt={2}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleDrawerClose}
+                >
+                  Save
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  onClick={handleDrawerClose}
+                  style={{ marginLeft: "1rem" }}
+                >
+                  Cancel
+                </Button>
+              </Box>
+            </Box>
+          </Drawer>
         </Box>
       </Container>
 
