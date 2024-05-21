@@ -394,9 +394,9 @@ export default function Page() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" component="div">
+          {/* <Typography variant="h6" component="div">
             Form Banner
-          </Typography>
+          </Typography> */}
         </Toolbar>
       </AppBar>
 
@@ -430,7 +430,7 @@ export default function Page() {
         style={{ flexGrow: 1, marginTop: "2rem" }}
       >
         <Typography variant="h4" gutterBottom>
-          Broken Pipe Information
+          Nhập Thông Tin Ống Bể
         </Typography>
         <form>
           <Grid container spacing={3}>
@@ -577,7 +577,7 @@ export default function Page() {
           >
             <Grid item>
               <Typography variant="h5" gutterBottom>
-                Data Table
+                Bảng Dữ Liệu
               </Typography>
             </Grid>
             <Grid item>
