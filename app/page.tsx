@@ -415,7 +415,7 @@ export default function Page() {
             <CloseIcon />
           </IconButton>
           <List>
-            {["Home", "Form", "Table", "About"].map((text, index) => (
+            {["Trang Chủ", "Thống Kê"].map((text, index) => (
               <ListItem button key={index}>
                 <ListItemText primary={text} />
               </ListItem>
