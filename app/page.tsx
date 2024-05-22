@@ -1,8 +1,11 @@
-import Page from './components/info'
+import Page from './pages/pipe'
+import { Test02 } from './pages/dashboard'
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 
 export default function Test() {
     return (
-        <Page />
+        <Test02 />
     )
 }
