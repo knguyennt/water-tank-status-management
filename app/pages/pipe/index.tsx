@@ -30,11 +30,9 @@ import {
   FormControl,
   Tooltip,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
-import { Nav } from "../components/nav";
+import { Nav } from "../../components/nav";
 
 const sampleData = [
   {

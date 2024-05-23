@@ -2,6 +2,7 @@ import { Drawer, Box, IconButton, List, ListItem, ListItemText, AppBar, Toolbar 
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Nav = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -43,11 +44,16 @@ export const Nav = () => {
             <CloseIcon />
           </IconButton>
           <List>
-            {["Trang Chủ", "Thống Kê"].map((text, index) => (
-              <ListItem button key={index}>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
+            <ListItem button key={1}>
+              <Link to="/">
+                <ListItemText primary="Trang chu" />
+              </Link>
+            </ListItem>
+            <ListItem button key={2}>
+              <Link to="/dashboard">
+                <ListItemText primary="Thong ke" />
+              </Link>
+            </ListItem>
           </List>
         </Box>
       </Drawer>
