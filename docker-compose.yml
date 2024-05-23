@@ -11,6 +11,17 @@ services:
       - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - metanet1
+    
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./api:/api
+      - ./app:/app
+    command: "npm run ui"
 
   metabase:
     image: metabase/metabase:latest

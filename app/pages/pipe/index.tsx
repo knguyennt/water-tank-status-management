@@ -19,11 +19,7 @@ import {
   TablePagination,
   Paper,
   Drawer,
-  List,
-  ListItem,
-  ListItemText,
   CssBaseline,
-  IconButton,
   Select,
   MenuItem,
   InputLabel,
@@ -36,7 +32,7 @@ import { Nav } from "../../components/nav";
 
 const sampleData = [
   {
-    date: "2024-05-19",
+    date: "2024-05-20",
     type: "Type A",
     district: "District 1",
     size: "Large",
@@ -373,7 +369,6 @@ export default function Page() {
   };
 
   useEffect(() => {
-    console.log("Effect hook.");
     setDataTable(sampleData);
     setFilteredData(sampleData);
   }, []);
