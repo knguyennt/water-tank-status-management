@@ -8,7 +8,7 @@ class Database {
   _initializeConnection() {
     this.sequelize = new Sequelize('brokenpipemanagement', 'metabase', 'mysecretpassword', {
       host: 'postgresnet',
-      dialect: 'postgres', // 'postgres', 'sqlite', 'mariadb', 'mssql', etc.
+      dialect: 'postgres',
     });
 
     this._testConnection();

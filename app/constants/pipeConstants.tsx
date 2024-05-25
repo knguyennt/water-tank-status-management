@@ -67,4 +67,5 @@ export const BROKEN_REASON = Object.freeze({
     "Joint bị lão hóa",
     "Vật tư cũ bị lão hóa",
   ],
+  [BROKEN_SPECIFICATION.KHAC]: [],
 });

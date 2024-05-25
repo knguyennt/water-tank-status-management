@@ -252,23 +252,40 @@ export default function Page() {
               </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <FormControl fullWidth margin="normal" disabled={!selectedSpec}>
-                <InputLabel id="reason-label">Nguyên nhân</InputLabel>
-                <Select
-                  labelId="reason-label"
-                  id="reason"
-                  value={selectedReason}
-                  onChange={handleReasonChange}
-                  label="Nguyên nhân"
-                >
-                  {selectedSpec &&
-                    BROKEN_REASON[selectedSpec].map((reason, index) => (
-                      <MenuItem key={index} value={reason}>
-                        {reason}
-                      </MenuItem>
-                    ))}
-                </Select>
-              </FormControl>
+              {selectedSpec != BROKEN_SPECIFICATION.KHAC && (
+                <FormControl fullWidth margin="normal" disabled={!selectedSpec}>
+                  <InputLabel id="reason-label">Nguyên nhân</InputLabel>
+                  <Select
+                    labelId="reason-label"
+                    id="reason"
+                    value={selectedReason}
+                    onChange={handleReasonChange}
+                    label="Nguyên nhân"
+                  >
+                    {selectedSpec &&
+                      BROKEN_REASON[selectedSpec].map((reason, index) => (
+                        <MenuItem key={index} value={reason}>
+                          {reason}
+                        </MenuItem>
+                      ))}
+                  </Select>
+                </FormControl>
+              )}
+              {selectedSpec == BROKEN_SPECIFICATION.KHAC && (
+                <FormControl fullWidth margin="normal" disabled={!selectedSpec}>
+                  <TextField
+                    required
+                    id="reason"
+                    label="Nguyên nhân"
+                    type="text"
+                    fullWidth
+                    InputLabelProps={{ shrink: true }}
+                    onChange={(event) =>
+                      updateFormValues("reason", event.target.value)
+                    }
+                  />
+                </FormControl>
+              )}
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
