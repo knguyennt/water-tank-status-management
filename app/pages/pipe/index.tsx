@@ -30,9 +30,11 @@ import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import { Nav } from "../../components/nav";
 import axios from "axios";
+import { BROKEN_REASON, BROKEN_SPECIFICATION, BROKEN_TYPE, DISTRICT, MANUFACTURER, MATERIAL, PIPE_SIZE } from "../../constants/pipeConstants";
 
 export default function Page() {
-  // Pagination state
+  const [selectedSpec, setSelectedSpec] = useState("");
+  const [selectedReason, setSelectedReason] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [drawerInfoOpen, setDrawerInfoOpen] = useState(false);
   const [page, setPage] = useState(0);
@@ -83,6 +85,15 @@ export default function Page() {
 
   const handleSubmit = () => {
     console.log(formValues);
+  };
+
+  const handleSpecChange = (event) => {
+    setSelectedSpec(event.target.value);
+    setSelectedReason(""); // Reset reason when specification changes
+  };
+
+  const handleReasonChange = (event) => {
+    setSelectedReason(event.target.value);
   };
 
 
@@ -146,7 +157,7 @@ export default function Page() {
               <TextField
                 required
                 id="date"
-                label="Date"
+                label="Ngày"
                 type="date"
                 fullWidth
                 InputLabelProps={{ shrink: true }}
@@ -156,32 +167,50 @@ export default function Page() {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                id="type"
-                label="Type"
-                fullWidth
-                onChange={(event) =>
-                  updateFormValues("type", event.target.value)
-                }
-              />
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Loại bể</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={formValues.type}
+                  label="Loại bể"
+                  onChange={(event) =>
+                    updateFormValues("type", event.target.value)
+                  }
+                >
+                  {BROKEN_TYPE.map((type, index) => (
+                    <MenuItem key={index} value={type}>
+                      {type}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                id="district"
-                label="District"
-                fullWidth
-                onChange={(event) =>
-                  updateFormValues("district", event.target.value)
-                }
-              />
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Quận</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={formValues.district}
+                  label="Quận"
+                  onChange={(event) =>
+                    updateFormValues("district", event.target.value)
+                  }
+                >
+                  {DISTRICT.map((district, index) => (
+                    <MenuItem key={index} value={district}>
+                      {district}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 required
                 id="amount"
-                label="Amount"
+                label="Số lượng bể"
                 type="number"
                 fullWidth
                 onChange={(event) =>
@@ -190,43 +219,91 @@ export default function Page() {
               />
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                id="reason"
-                label="Reason"
-                fullWidth
-                onChange={(event) =>
-                  updateFormValues("reason", event.target.value)
-                }
-              />
+              <FormControl fullWidth margin="normal">
+                <InputLabel id="specification-label">Đặc điểm bể</InputLabel>
+                <Select
+                  labelId="specification-label"
+                  id="specification"
+                  value={selectedSpec}
+                  onChange={handleSpecChange}
+                  label="Đặc điểm bể"
+                >
+                  {Object.keys(BROKEN_SPECIFICATION).map((key) => (
+                    <MenuItem key={key} value={BROKEN_SPECIFICATION[key]}>
+                      {BROKEN_SPECIFICATION[key]}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                id="material"
-                label="Material"
-                fullWidth
-                onChange={(event) =>
-                  updateFormValues("material", event.target.value)
-                }
-              />
+              <FormControl fullWidth margin="normal" disabled={!selectedSpec}>
+                <InputLabel id="reason-label">Nguyên nhân</InputLabel>
+                <Select
+                  labelId="reason-label"
+                  id="reason"
+                  value={selectedReason}
+                  onChange={handleReasonChange}
+                  label="Nguyên nhân"
+                >
+                  {selectedSpec &&
+                    BROKEN_REASON[selectedSpec].map((reason, index) => (
+                      <MenuItem key={index} value={reason}>
+                        {reason}
+                      </MenuItem>
+                    ))}
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                id="manufacturer"
-                label="Manufacturer"
-                fullWidth
-                onChange={(event) =>
-                  updateFormValues("manufacturer", event.target.value)
-                }
-              />
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Loại vật liệu
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={formValues.material}
+                  label="Loại vật liệu"
+                  onChange={(event) =>
+                    updateFormValues("material", event.target.value)
+                  }
+                >
+                  {MATERIAL.map((material, index) => (
+                    <MenuItem key={index} value={material}>
+                      {material}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Nhà cung cấp
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={formValues.manufacturer}
+                  label="Nhà cung cấp"
+                  onChange={(event) =>
+                    updateFormValues("manufacturer", event.target.value)
+                  }
+                >
+                  {MANUFACTURER.map((manufacturer, index) => (
+                    <MenuItem key={index} value={manufacturer}>
+                      {manufacturer}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
                 required
                 id="thickness"
-                label="Thickness"
+                label="Độ dày"
                 fullWidth
                 onChange={(event) =>
                   updateFormValues("thickness", event.target.value)
@@ -237,7 +314,7 @@ export default function Page() {
               <TextField
                 required
                 id="installed_date"
-                label="Installed Date"
+                label="Ngày lắp đặt gần nhất"
                 type="date"
                 fullWidth
                 InputLabelProps={{ shrink: true }}
@@ -248,19 +325,21 @@ export default function Page() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Size</InputLabel>
+                <InputLabel id="demo-simple-select-label">Cỡ ống</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
                   value={formValues.size}
-                  label="Size"
+                  label="Cỡ ống"
                   onChange={(event) =>
                     updateFormValues("size", event.target.value)
                   }
                 >
-                  <MenuItem value={10}>Ten</MenuItem>
-                  <MenuItem value={20}>Twenty</MenuItem>
-                  <MenuItem value={30}>Thirty</MenuItem>
+                  {PIPE_SIZE.map((size, index) => (
+                    <MenuItem key={index} value={size}>
+                      {size}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Grid>
