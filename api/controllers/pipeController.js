@@ -1,9 +1,9 @@
 import { pipeService } from '../services/pipeService.js'
 
 class PipeController {
-    getPipeById = () => {
-        const result = pipeService.getPipeById()
-        return result
+    getAllPipe = async (req, res, next) => {
+        const result = await pipeService.getAllPipe()
+        return res.status(200).json({ data: result });
     }
 }
 

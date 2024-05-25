@@ -6,7 +6,7 @@ class Database {
   }
 
   _initializeConnection() {
-    this.sequelize = new Sequelize('brokenpipemanagement', 'postgres', '1234', {
+    this.sequelize = new Sequelize('brokenpipemanagement', 'metabase', 'mysecretpassword', {
       host: 'localhost',
       dialect: 'postgres', // 'postgres', 'sqlite', 'mariadb', 'mssql', etc.
     });
@@ -53,7 +53,7 @@ const BrokenPipe = db_connector.sequelize.define('BrokenPipe', {
     type: DataTypes.DATE,
     allowNull: true
   },
-  type: {
+  broken_type: {
     type: DataTypes.STRING,
     allowNull: true,
   },
@@ -77,7 +77,7 @@ const BrokenPipe = db_connector.sequelize.define('BrokenPipe', {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  manufactor: {
+  manufacturer: {
     type: DataTypes.STRING,
     allowNull: true,
   },
@@ -92,9 +92,17 @@ const BrokenPipe = db_connector.sequelize.define('BrokenPipe', {
   pipe_type: {
     type: DataTypes.STRING,
     allowNull: true,
+  },
+  broken_specification: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  pipe_material: {
+    type: DataTypes.STRING,
+    allowNull: true,
   }
 }, {
-  tableName: 'BrokenPipe',
+  tableName: 'brokenpipe',
   timestamps: false // or false if you don't want timestamps
 });
 

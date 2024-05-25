@@ -1,4 +1,4 @@
-class pipeMapper {
+class PipeMapper {
   entityToDto(entity) {
     return {
       id: entity.id,
@@ -16,6 +16,8 @@ class pipeMapper {
 
   // Other mapping methods
 }
+
+const pipeMapper = new PipeMapper()
 
 export {
     pipeMapper

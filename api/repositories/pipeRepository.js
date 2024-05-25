@@ -8,6 +8,10 @@ class PipeRepository {
   async createPipe(data) {
     return await BrokenPipe.create(data);
   }
+
+  async getAllPipe() {
+    return await BrokenPipe.findAll();
+  }
 }
 
 export const pipeRepository = new PipeRepository()

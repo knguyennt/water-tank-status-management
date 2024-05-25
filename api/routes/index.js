@@ -3,7 +3,7 @@ import { pipeController } from '../controllers/pipeController.js'
 
 const router = express.Router();
 
-router.get("/test", pipeController.getPipeById)
+router.get("/test", pipeController.getAllPipe)
 
 
 router.get('/', async (req, res, next) => {

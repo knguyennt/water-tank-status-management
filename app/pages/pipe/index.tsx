@@ -29,226 +29,7 @@ import {
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import { Nav } from "../../components/nav";
-
-const sampleData = [
-  {
-    date: "2024-05-20",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "2mm",
-    installed_date: "2024-05-20",
-  },
-  {
-    date: "2024-05-19",
-    type: "Type A",
-    district: "District 1",
-    size: "Large",
-    amount: 100,
-    reason: "Reason 1",
-    material: "Material 1",
-    manufacturer: "Manufacturer 1",
-    thickness: "9mm",
-    installed_date: "2024-05-20",
-  },
-  // Add more sample data as needed
-];
+import axios from "axios";
 
 export default function Page() {
   // Pagination state
@@ -256,34 +37,8 @@ export default function Page() {
   const [drawerInfoOpen, setDrawerInfoOpen] = useState(false);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const [dataTable, setDataTable] = useState([
-    {
-      date: "",
-      type: "",
-      district: "",
-      size: "",
-      amount: 0,
-      reason: "",
-      material: "",
-      manufacturer: "",
-      thickness: "",
-      installed_date: "",
-    },
-  ]);
-  const [filteredData, setFilteredData] = useState([
-    {
-      date: "",
-      type: "",
-      district: "",
-      size: "",
-      amount: 0,
-      reason: "",
-      material: "",
-      manufacturer: "",
-      thickness: "",
-      installed_date: "",
-    },
-  ]);
+  const [dataTable, setDataTable] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [formValues, setFormValues] = useState({
     date: "",
     type: "",
@@ -330,10 +85,6 @@ export default function Page() {
     console.log(formValues);
   };
 
-  // Toggle drawer
-  const toggleDrawer = () => {
-    setDrawerOpen(!drawerOpen);
-  };
 
   const cellStyle = {
     whiteSpace: "nowrap",
@@ -364,13 +115,15 @@ export default function Page() {
     setFilteredData(filtered);
   };
 
-  const getTableData = () => {
-    console.log("AAAA");
+  const getTableData = async () => {
+    const { data } = await axios.get("http://localhost:3555/test");
+
+    setDataTable(data.data);
+    setFilteredData(data.data);
   };
 
   useEffect(() => {
-    setDataTable(sampleData);
-    setFilteredData(sampleData);
+    getTableData();
   }, []);
 
   return (
@@ -381,8 +134,8 @@ export default function Page() {
 
       <Container
         component="main"
-        maxWidth="md"
-        style={{ flexGrow: 1, marginTop: "2rem" }}
+        maxWidth={false}
+        style={{ flexGrow: 1, marginTop: "2rem", width: "100%" }}
       >
         <Typography variant="h4" gutterBottom>
           Nhập Thông Tin Ống Bể
@@ -557,36 +310,46 @@ export default function Page() {
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>Date</TableCell>
-                  <TableCell>Type</TableCell>
-                  <TableCell>District</TableCell>
-                  <TableCell>Size</TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Reason</TableCell>
-                  <TableCell>Material</TableCell>
-                  <TableCell>Manufacturer</TableCell>
-                  <TableCell>Thickness</TableCell>
-                  <TableCell>Installed Date</TableCell>
+                  <TableCell>ID</TableCell>
+                  <TableCell>Ngày</TableCell>
+                  <TableCell>Loại bể</TableCell>
+                  <TableCell>Quận</TableCell>
+                  <TableCell>Cỡ ống</TableCell>
+                  <TableCell>Số lượng bể</TableCell>
+                  <TableCell>Nguyên nhân</TableCell>
+                  <TableCell>Loại vậy liệu</TableCell>
+                  <TableCell>Nhà cung cấp</TableCell>
+                  <TableCell>Độ dày</TableCell>
+                  <TableCell>Ngày lắp đặt gần nhất</TableCell>
+                  <TableCell>Phân loại ống</TableCell>
+                  <TableCell>Đặc điểm bể</TableCell>
+                  <TableCell>Phân loại vật liệu ống</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredData
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row, rowIndex) => (
-                    <TableRow
-                      key={rowIndex}
-                      onClick={() => handleRowClick(row)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      {Object.values(row).map((value, cellIndex) => (
-                        <TableCell key={cellIndex} style={cellStyle}>
-                          <Tooltip title={value} arrow>
-                            <span>{value}</span>
-                          </Tooltip>
-                        </TableCell>
-                      ))}
-                    </TableRow>
-                  ))}
+                {filteredData.length > 0 &&
+                  filteredData
+                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                    .map((row, rowIndex) => (
+                      <TableRow
+                        key={rowIndex}
+                        onClick={() => handleRowClick(row)}
+                        style={{ cursor: "pointer" }}
+                      >
+                        {Object.values(row).map(
+                          (
+                            value: React.ReactNode,
+                            cellIndex
+                          ): React.ReactNode => (
+                            <TableCell key={cellIndex} style={cellStyle}>
+                              <Tooltip title={value} arrow>
+                                <span>{value}</span>
+                              </Tooltip>
+                            </TableCell>
+                          )
+                        )}
+                      </TableRow>
+                    ))}
               </TableBody>
             </Table>
           </TableContainer>
