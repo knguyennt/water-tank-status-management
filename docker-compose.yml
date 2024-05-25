@@ -1,5 +1,6 @@
 services:
   postgres:
+    hostname: postgresnet
     image: postgres:16.3
     environment:
       POSTGRES_USER: metabase
@@ -18,30 +19,36 @@ services:
       dockerfile: ./Dockerfile
     ports:
       - 3000:3000
+      - 3555:3555
     volumes:
       - ./api:/api
       - ./app:/app
-    command: "npm run ui"
-
-  metabase:
-    image: metabase/metabase:latest
-    container_name: metabase
-    ports:
-      - 3001:3000
-    environment:
-      MB_DB_TYPE: postgres
-      MB_DB_DBNAME: metabaseappdb
-      MB_DB_PORT: 5432
-      MB_DB_USER: metabase
-      MB_DB_PASS: mysecretpassword
-      MB_DB_HOST: postgres
+      - ./scripts:/scripts
+      - ./package.json:/package.json
     networks:
       - metanet1
-    healthcheck:
-      test: curl --fail -I http://localhost:3000/api/health || exit 1
-      interval: 15s
-      timeout: 5s
-      retries: 5
+    command: "npm run dev"
+
+  # metabase:
+  #   image: metabase/metabase:latest
+  #   container_name: metabase
+  #   ports:
+  #     - 3001:3000
+  #   environment:
+  #     MB_DB_TYPE: postgres
+  #     MB_DB_DBNAME: metabaseappdb
+  #     MB_DB_PORT: 5432
+  #     MB_DB_USER: metabase
+  #     MB_DB_PASS: mysecretpassword
+  #     MB_DB_HOST: postgres
+  #     MB_JETTY_PORT: 3002
+  #   networks:
+  #     - metanet1
+  #   healthcheck:
+  #     test: curl --fail -I http://localhost:3000/api/health || exit 1
+  #     interval: 15s
+  #     timeout: 5s
+  #     retries: 5
 
 networks:
   metanet1:

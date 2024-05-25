@@ -9,6 +9,16 @@ class PipeService {
     }
     return pipeEntity
   }
+
+  async createPipe(data) {
+    if (data?.size) {
+      data.pipe_type = parseInt(data.size) < 50 ? "Ống ngánh": "Ống cái"
+    }
+    if (data?.material) {
+      data.pipe_material = data.material == "Gang" ? "Gang" : "Nhựa"
+    }
+    await pipeRepository.createPipe(data);
+  }
 }
 
 export const pipeService = new PipeService()

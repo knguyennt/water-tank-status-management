@@ -7,7 +7,7 @@ class Database {
 
   _initializeConnection() {
     this.sequelize = new Sequelize('brokenpipemanagement', 'metabase', 'mysecretpassword', {
-      host: 'localhost',
+      host: 'postgresnet',
       dialect: 'postgres', // 'postgres', 'sqlite', 'mariadb', 'mssql', etc.
     });
 
@@ -65,7 +65,7 @@ const BrokenPipe = db_connector.sequelize.define('BrokenPipe', {
     type: DataTypes.INTEGER,
     allowNull: true,
   },
-  ammount: {
+  amount: {
     type: DataTypes.INTEGER,
     allowNull: true,
   },

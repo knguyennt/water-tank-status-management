@@ -2,8 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import {
-  AppBar,
-  Toolbar,
   Typography,
   Box,
   Container,
@@ -43,7 +41,7 @@ export default function Page() {
   const [filteredData, setFilteredData] = useState([]);
   const [formValues, setFormValues] = useState({
     date: "",
-    type: "",
+    broken_type: "",
     district: "",
     size: "",
     amount: 0,
@@ -52,6 +50,7 @@ export default function Page() {
     manufacturer: "",
     thickness: "",
     installed_date: "",
+    broken_specification: "",
   });
   const [selectedRow, setSelectedRow] = useState(null);
 
@@ -83,17 +82,33 @@ export default function Page() {
     setPage(0);
   };
 
-  const handleSubmit = () => {
-    console.log(formValues);
+  const handleSubmit = async () => {
+    await axios.post("http://localhost:3555/createPipe", formValues);
+    await getTableData();
+    setFormValues({
+      date: "",
+      broken_type: "",
+      district: "",
+      size: "",
+      amount: 0,
+      reason: "",
+      material: "",
+      manufacturer: "",
+      thickness: "",
+      installed_date: "",
+      broken_specification: "",
+    });
   };
 
   const handleSpecChange = (event) => {
     setSelectedSpec(event.target.value);
     setSelectedReason(""); // Reset reason when specification changes
+    updateFormValues("broken_specification", event.target.value);
   };
 
   const handleReasonChange = (event) => {
     setSelectedReason(event.target.value);
+    updateFormValues("reason", event.target.value);
   };
 
 
@@ -127,7 +142,7 @@ export default function Page() {
   };
 
   const getTableData = async () => {
-    const { data } = await axios.get("http://localhost:3555/test");
+    const { data } = await axios.get("http://localhost:3555/getDataTable");
 
     setDataTable(data.data);
     setFilteredData(data.data);
@@ -172,10 +187,10 @@ export default function Page() {
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
-                  value={formValues.type}
+                  value={formValues.broken_type}
                   label="Loại bể"
                   onChange={(event) =>
-                    updateFormValues("type", event.target.value)
+                    updateFormValues("broken_type", event.target.value)
                   }
                 >
                   {BROKEN_TYPE.map((type, index) => (
@@ -304,6 +319,7 @@ export default function Page() {
                 required
                 id="thickness"
                 label="Độ dày"
+                type="number"
                 fullWidth
                 onChange={(event) =>
                   updateFormValues("thickness", event.target.value)
@@ -491,7 +507,7 @@ export default function Page() {
         color="primary.contrastText"
       >
         <Typography variant="body2" color="inherit">
-          © 2024 My Company
+          © Công ty cổ phần cấp nước chợ lớn
         </Typography>
       </Box>
     </Box>

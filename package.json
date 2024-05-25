@@ -11,7 +11,7 @@
     "build": "next build",
     "lint": "next lint",
     "client": "",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run ui\""
   },
   "author": "",
   "license": "ISC",
