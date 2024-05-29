@@ -27,7 +27,7 @@ services:
       - ./package.json:/package.json
     networks:
       - metanet1
-    command: "npm i && npm run dev"
+    command: "npm run dev"
 
   # metabase:
   #   image: metabase/metabase:latest
