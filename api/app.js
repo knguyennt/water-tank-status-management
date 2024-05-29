@@ -15,6 +15,15 @@ app.use(cookieParser());
 
 app.use(cors({ origin: '*' }));
 
+// Proxy middleware configuration
+const proxyConfig = {
+  target: `http://localhost:${PORT}`,
+  changeOrigin: true,
+  secure: false
+};
+
+app.use('/api', createProxyMiddleware(proxyConfig));
+
 
 import indexRouter from './routes/index.js';
 
