@@ -83,7 +83,9 @@ export default function Page() {
   };
 
   const handleSubmit = async () => {
-    await axios.post("http://localhost:3555/createPipe", formValues);
+    await axios.post("http://localhost:3555/createPipe", formValues, {
+      withCredentials: false,
+    });
     await getTableData();
     setFormValues({
       date: "",
@@ -142,7 +144,9 @@ export default function Page() {
   };
 
   const getTableData = async () => {
-    const { data } = await axios.get("http://localhost:3555/getDataTable");
+    const { data } = await axios.get("http://localhost:3555/getDataTable", {
+      withCredentials: false,
+    });
 
     setDataTable(data.data);
     setFilteredData(data.data);
