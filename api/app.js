@@ -12,13 +12,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-app.use(function setCommonHeaders(req, res, next) {
-  res.set("Access-Control-Allow-Private-Network", "true");
-  next();
-});
-
 app.use(cors())
+
+app.get('/cors', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.send({ "msg": "This has CORS enabled 🎈" })
+})
 
 
 import indexRouter from './routes/index.js';
