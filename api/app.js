@@ -14,11 +14,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors())
 
-app.all('/', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next()
-  });
+ const corsOptions = {
+   origin: 'http://localhost:3000/',
+   optionsSuccessStatus: 200,
+ };
+
+ app.use(cors(corsOptions));
 
 
 import indexRouter from './routes/index.js';
