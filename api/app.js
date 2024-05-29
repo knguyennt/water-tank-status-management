@@ -2,6 +2,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import cors from 'cors'
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const app = express(); 
 const PORT = 3555; 
