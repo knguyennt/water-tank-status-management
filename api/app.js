@@ -13,12 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
- const corsOptions = {
-   origin: '*',
-   optionsSuccessStatus: 200,
- };
-
- app.use(cors(corsOptions))
+app.use(cors({ origin: '*' }));
 
 
 import indexRouter from './routes/index.js';
